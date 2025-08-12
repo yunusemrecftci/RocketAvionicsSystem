@@ -94,6 +94,22 @@ This project implements a complete rocket flight computer system featuring:
     ```
     Header (1 byte) + Body (44 bytes) + State (1 byte) = 46 bytes total
     ```
+  - **Byte-by-Byte Structure**:
+    ```
+    Byte 0:   Header (0xFF)
+    Bytes 1-4:   Altitude (float, 4 bytes)
+    Bytes 5-8:   GPS Altitude (float, 4 bytes)
+    Bytes 9-12:  GPS Latitude (float, 4 bytes)
+    Bytes 13-16: GPS Longitude (float, 4 bytes)
+    Bytes 17-20: Gyroscope X (float, 4 bytes)
+    Bytes 21-24: Gyroscope Z (float, 4 bytes)
+    Bytes 25-28: Gyroscope Y (float, 4 bytes)
+    Bytes 29-32: Pitch (float, 4 bytes)
+    Bytes 33-36: Acceleration X (float, 4 bytes)
+    Bytes 37-40: Acceleration Z (float, 4 bytes)
+    Bytes 41-44: Acceleration Y (float, 4 bytes)
+    Byte 45:     State (8-bit flags)
+    ```
 - **RS232**: High-speed serial communication
 - **HYI Protocol**: Competition-standard data format
 
