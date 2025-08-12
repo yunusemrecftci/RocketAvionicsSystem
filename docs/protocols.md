@@ -7,7 +7,6 @@ The rocket flight computer uses multiple communication protocols for different p
 1. **LoRa Telemetry**: Long-range wireless data transmission
 2. **RS232 Commands**: External control interface
 3. **HYI Protocol**: Competition-standard data format
-4. **JSON Format**: Flexible data exchange
 
 ## LoRa Telemetry Protocol
 
@@ -23,6 +22,23 @@ struct TelePkt {
     uint8_t body[44];   // Sensor data (11 float values × 4 bytes each)
     uint8_t state;      // Flight state bits
 };
+```
+
+### Byte-by-Byte Packet Structure
+```
+Byte 0:   Header (0xFF)
+Bytes 1-4:   Altitude (float, 4 bytes)
+Bytes 5-8:   GPS Altitude (float, 4 bytes)
+Bytes 9-12:  GPS Latitude (float, 4 bytes)
+Bytes 13-16: GPS Longitude (float, 4 bytes)
+Bytes 17-20: Gyroscope X (float, 4 bytes)
+Bytes 21-24: Gyroscope Z (float, 4 bytes)
+Bytes 25-28: Gyroscope Y (float, 4 bytes)
+Bytes 29-32: Pitch (float, 4 bytes)
+Bytes 33-36: Acceleration X (float, 4 bytes)
+Bytes 37-40: Acceleration Z (float, 4 bytes)
+Bytes 41-44: Acceleration Y (float, 4 bytes)
+Byte 45:     State (8-bit flags)
 ```
 
 ### Data Fields (Body)
@@ -208,37 +224,7 @@ struct HYIPacket {
 - **Float Validation**: Check for NaN, Infinity, and range limits
 - **Status Validation**: Ensure status bits are valid
 
-## JSON Data Format
 
-### Rocket Data Format
-```json
-{
-    "kaynak": "anakart",
-    "fAlt": 150.5,
-    "gpsAlt": 150.2,
-    "gpsLat": 39.9334,
-    "gpsLng": 32.8597,
-    "gyroX": 0.5,
-    "gyroY": -1.2,
-    "gyroZ": 0.8,
-    "accX": 0.1,
-    "accY": 0.2,
-    "accZ": 9.8,
-    "pitch": 15.3,
-    "state": 2
-}
-```
-
-### Field Descriptions
-- **kaynak**: Data source ("anakart" = rocket)
-- **fAlt**: Altitude in meters
-- **gpsAlt**: GPS altitude in meters
-- **gpsLat**: GPS latitude in degrees
-- **gpsLng**: GPS longitude in degrees
-- **gyroX/Y/Z**: Gyroscope readings in degrees
-- **accX/Y/Z**: Acceleration in m/s²
-- **pitch**: Pitch angle in degrees
-- **state**: Flight status (integer)
 
 ## Error Handling
 
@@ -284,7 +270,6 @@ bool validateFloat(float val) {
 | RS232 Commands | 5 bytes | 60% (data/overhead) |
 | SIT/SUT | 36 bytes | 89% (data/overhead) |
 | HYI | 78 bytes | 77% (data/overhead) |
-| JSON | Variable | ~85% (data/overhead) |
 
 ### Reliability Features
 - **Retry Mechanisms**: Automatic retransmission

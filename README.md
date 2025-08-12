@@ -90,9 +90,12 @@ This project implements a complete rocket flight computer system featuring:
   - **Ground Antenna**: 12dB 866MHz Yagi antenna
   - **Tested Range**: 15km (verified in field tests)
   - **Frequency**: 866MHz (configurable)
+  - **Packet Structure**: 46-byte binary format
+    ```
+    Header (1 byte) + Body (44 bytes) + State (1 byte) = 46 bytes total
+    ```
 - **RS232**: High-speed serial communication
 - **HYI Protocol**: Competition-standard data format
-- **JSON**: Flexible data exchange format
 
 ## 🔧 Hardware Requirements
 
