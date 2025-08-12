@@ -89,7 +89,7 @@ This project implements a complete rocket flight computer system featuring:
   - **Rocket Antenna**: 5dB Omni antenna
   - **Ground Antenna**: 12dB 866MHz Yagi antenna
   - **Tested Range**: 15km (verified in field tests)
-  - **Frequency**: 433MHz (configurable)
+  - **Frequency**: 866MHz (configurable)
 - **RS232**: High-speed serial communication
 - **HYI Protocol**: Competition-standard data format
 - **JSON**: Flexible data exchange format

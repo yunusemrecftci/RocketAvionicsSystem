@@ -51,7 +51,7 @@ Bit 7: Main parachute command
 ```
 
 ### Transmission Parameters
-- **Frequency**: 433 MHz (configurable)
+- **Frequency**: 866 MHz (configurable)
 - **Baud Rate**: 9600 bps
 - **Transmission Rate**: 5 Hz (every 200ms)
 - **Range**: Up to 15 km (tested with 5dB rocket antenna + 12dB ground Yagi)
