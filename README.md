@@ -31,7 +31,7 @@ This project implements a complete rocket flight computer system featuring:
 
 ### Flight Computer Board
 
-![Rocket Flight Computer Board](images/flight_computer_board.jpg)
+![Rocket Flight Computer Board](images/card.jpeg)
 
 *The flight computer features a Teensy 4.x microcontroller with integrated sensors and communication modules for autonomous rocket control.*
 
