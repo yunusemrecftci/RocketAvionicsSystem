@@ -54,7 +54,10 @@ Bit 7: Main parachute command
 - **Frequency**: 433 MHz (configurable)
 - **Baud Rate**: 9600 bps
 - **Transmission Rate**: 5 Hz (every 200ms)
-- **Range**: Up to 3 km (line of sight)
+- **Range**: Up to 15 km (tested with 5dB rocket antenna + 12dB ground Yagi)
+- **Rocket Antenna**: 5dB Omni antenna
+- **Ground Antenna**: 12dB 866MHz Yagi antenna
+- **Field Tested**: Verified range of 15km in real-world conditions
 
 ## RS232 Command Protocol
 

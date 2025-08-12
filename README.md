@@ -58,7 +58,7 @@ This project implements a complete rocket flight computer system featuring:
 - **BMP388 Sensor**: Barometric pressure and altitude measurement
 - **BNO055 IMU**: 9-DOF motion and orientation sensing
 - **GPS Module**: Global positioning and navigation
-- **LoRa E22 Module**: Long-range wireless communication
+- **LoRa E22 Module**: Long-range wireless communication (15km tested range)
 - **RS232 Interface**: High-speed serial communication
 - **Pyro Control Circuits**: MOSFET-based parachute deployment
 
@@ -86,6 +86,10 @@ This project implements a complete rocket flight computer system featuring:
 
 ### Communication Protocols
 - **LoRa E22**: Long-range wireless telemetry
+  - **Rocket Antenna**: 5dB Omni antenna
+  - **Ground Antenna**: 12dB 866MHz Yagi antenna
+  - **Tested Range**: 15km (verified in field tests)
+  - **Frequency**: 433MHz (configurable)
 - **RS232**: High-speed serial communication
 - **HYI Protocol**: Competition-standard data format
 - **JSON**: Flexible data exchange format
