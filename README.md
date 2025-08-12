@@ -130,8 +130,8 @@ This project implements a complete rocket flight computer system featuring:
 
 ## 💻 Software Requirements
 
-### Flight Computer
-- **Arduino IDE** 1.8.x or later
+### Flight Computer (Recommended)
+- **Arduino IDE** 1.8.x or later ⭐ **RECOMMENDED**
 - **Teensyduino** (if using Teensy)
 - **Required Libraries**:
   - `Adafruit_Sensor`
@@ -141,11 +141,19 @@ This project implements a complete rocket flight computer system featuring:
   - `LoRa_E22`
   - `RunningAverage`
 
-### C++ Development (Optional)
+### C++ Development (Not Recommended)
 - **C++ Compiler**: GCC 7+ or Clang 6+
 - **CMake**: 3.16+ (optional)
 - **Make**: Standard Unix/Linux make
 - **IDE Support**: VS Code, CLion, or similar
+- ⚠️ **Complex setup, not recommended for beginners**
+
+### PlatformIO Development (Not Recommended)
+- **PlatformIO Core**: Latest version
+- **PlatformIO IDE**: VS Code extension or standalone
+- **Python**: 3.7+ (for build scripts)
+- **Automatic Library Management**: Dependencies handled automatically
+- ⚠️ **Advanced setup, Arduino IDE preferred**
 
 ## 📦 Installation
 
@@ -169,8 +177,8 @@ cd rocket-flight-computer
 3. Connect hardware according to pin definitions in `docs/hardware.md`
 4. Upload `firmware/RocketFlightAlgorithm.ino` to your microcontroller
 
-### C++ Development Setup (Optional)
-For advanced development with C++:
+### C++ Development Setup (Not Recommended)
+⚠️ **Advanced setup - Arduino IDE recommended for beginners**
 
 1. **Build with Make**:
    ```bash
@@ -188,7 +196,35 @@ For advanced development with C++:
 
 3. **See `firmware/README_CPP.md` for detailed C++ development guide**
 
+### PlatformIO Setup (Not Recommended)
+⚠️ **Advanced setup - Arduino IDE recommended for beginners**
+
+1. **Install PlatformIO**:
+   ```bash
+   pip install platformio
+   ```
+
+2. **Build and Upload**:
+   ```bash
+   pio run -e teensy41
+   pio run -e teensy41 -t upload
+   ```
+
+3. **Monitor Output**:
+   ```bash
+   pio device monitor -e teensy41
+   ```
+
+4. **See `README_PLATFORMIO.md` for detailed PlatformIO guide**
+
 ## 🚀 Usage
+
+### ⭐ Recommended: Arduino IDE Setup
+1. **Install Arduino IDE** and Teensyduino
+2. **Install required libraries** via Library Manager
+3. **Open `firmware/RocketFlightAlgorithm.ino`**
+4. **Select Teensy 4.x board** and upload
+5. **Monitor via Serial Monitor** at 115200 baud
 
 ### Flight Computer Operation
 1. **Power Up**: Connect power and wait for sensor calibration
@@ -214,12 +250,19 @@ rocket-flight-computer/
 │   ├── hardware.md          # Hardware setup guide
 │   ├── software.md          # Software architecture
 │   └── protocols.md         # Communication protocols
+├── platformio.ini           # PlatformIO configuration
+├── src/
+│   └── main.cpp             # Main firmware source (PlatformIO)
+├── scripts/                 # Build scripts
+│   ├── pre_build.py         # Pre-build validation
+│   └── post_build.py        # Post-build reporting
 ├── firmware/                # Flight computer code
 │   ├── RocketFlightAlgorithm.ino  # Main Arduino sketch (.ino)
 │   ├── rocket_flight_computer.cpp # C++ version of firmware
 │   ├── Makefile             # Make build system
 │   ├── CMakeLists.txt       # CMake build system
 │   └── README_CPP.md        # C++ implementation guide
+├── README_PLATFORMIO.md     # PlatformIO guide
 ├── schematics/              # Hardware schematics
 └── examples/                # Example configurations
 ```
