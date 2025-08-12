@@ -141,6 +141,12 @@ This project implements a complete rocket flight computer system featuring:
   - `LoRa_E22`
   - `RunningAverage`
 
+### C++ Development (Optional)
+- **C++ Compiler**: GCC 7+ or Clang 6+
+- **CMake**: 3.16+ (optional)
+- **Make**: Standard Unix/Linux make
+- **IDE Support**: VS Code, CLion, or similar
+
 ## 📦 Installation
 
 ### 1. Clone the Repository
@@ -163,6 +169,25 @@ cd rocket-flight-computer
 3. Connect hardware according to pin definitions in `docs/hardware.md`
 4. Upload `firmware/RocketFlightAlgorithm.ino` to your microcontroller
 
+### C++ Development Setup (Optional)
+For advanced development with C++:
+
+1. **Build with Make**:
+   ```bash
+   cd firmware
+   make
+   ```
+
+2. **Build with CMake**:
+   ```bash
+   cd firmware
+   mkdir build && cd build
+   cmake ..
+   make
+   ```
+
+3. **See `firmware/README_CPP.md` for detailed C++ development guide**
+
 ## 🚀 Usage
 
 ### Flight Computer Operation
@@ -184,13 +209,17 @@ rocket-flight-computer/
 ├── LICENSE                   # License information
 ├── .gitignore               # Git ignore rules
 ├── images/                   # Project images
-│   └── flight_computer_board.jpg  # Flight computer board image
+│   └── board.jpeg            # Flight computer board image
 ├── docs/                    # Documentation
 │   ├── hardware.md          # Hardware setup guide
 │   ├── software.md          # Software architecture
 │   └── protocols.md         # Communication protocols
 ├── firmware/                # Flight computer code
-│   └── RocketFlightAlgorithm.ino  # Main Arduino sketch
+│   ├── RocketFlightAlgorithm.ino  # Main Arduino sketch (.ino)
+│   ├── rocket_flight_computer.cpp # C++ version of firmware
+│   ├── Makefile             # Make build system
+│   ├── CMakeLists.txt       # CMake build system
+│   └── README_CPP.md        # C++ implementation guide
 ├── schematics/              # Hardware schematics
 └── examples/                # Example configurations
 ```
@@ -290,5 +319,5 @@ For questions and support:
 ---
 
 **Version**: 1.0.0  
-**Last Updated**: December 2024  
-**Maintainer**: Your Name
+**Last Updated**: August 2025  
+**Maintainer**: Yunus Emre Çiftçi
