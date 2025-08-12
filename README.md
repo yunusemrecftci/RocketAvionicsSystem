@@ -2,8 +2,26 @@
 
 A comprehensive Arduino/Teensy-based flight computer for rocket telemetry and autonomous control, featuring real-time sensor integration, flight algorithms, and communication protocols.
 
+## 🎯 Purpose & Mission
+
+This flight computer is designed for **autonomous rocket control and recovery**. Its primary mission is to:
+
+- **Detect Launch**: Automatically identify when the rocket leaves the ground
+- **Monitor Flight**: Track altitude, orientation, and acceleration in real-time
+- **Detect Apogee**: Identify the highest point of the rocket's trajectory
+- **Deploy Parachutes**: Automatically trigger drogue and main parachutes at optimal altitudes
+- **Ensure Safe Recovery**: Guarantee the rocket returns safely to the ground
+
+### Key Capabilities:
+- **Autonomous Operation**: No human intervention required during flight
+- **Real-time Processing**: 100Hz sensor reading and decision making
+- **Fail-safe Systems**: Multiple safety mechanisms to prevent accidents
+- **Competition Ready**: Compatible with rocket competition protocols
+- **Long-range Communication**: LoRa telemetry for ground monitoring
+
 ## 📋 Table of Contents
 
+- [Purpose & Mission](#-purpose--mission)
 - [Overview](#overview)
 - [Hardware Overview](#hardware-overview)
 - [Features](#features)
