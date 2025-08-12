@@ -1,8 +1,8 @@
-# 🚀 Rocket Flight Computer
+# Rocket Flight Computer
 
 A comprehensive Arduino/Teensy-based flight computer for rocket telemetry and autonomous control, featuring real-time sensor integration, flight algorithms, and communication protocols.
 
-## 🎯 Purpose & Mission
+## Purpose & Mission
 
 This flight computer is designed for **autonomous rocket control and recovery**. Its primary mission is to:
 
@@ -19,9 +19,9 @@ This flight computer is designed for **autonomous rocket control and recovery**.
 - **Competition Ready**: Compatible with rocket competition protocols
 - **Long-range Communication**: LoRa telemetry for ground monitoring
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Purpose & Mission](#-purpose--mission)
+- [Purpose & Mission](#purpose--mission)
 - [Overview](#overview)
 - [Hardware Overview](#hardware-overview)
 - [Features](#features)
@@ -35,7 +35,7 @@ This flight computer is designed for **autonomous rocket control and recovery**.
 - [Contributing](#contributing)
 - [License](#license)
 
-## 🎯 Overview
+## Overview
 
 This project implements a complete rocket flight computer system featuring:
 
@@ -45,7 +45,7 @@ This project implements a complete rocket flight computer system featuring:
 - **Multiple Communication Modes**: LoRa telemetry, RS232 command interface
 - **Test Modes**: SIT (System Integration Test) and SUT (System Under Test) modes
 
-## 🔧 Hardware Overview
+## Hardware Overview
 
 ### Flight Computer Board
 
@@ -75,7 +75,7 @@ This project implements a complete rocket flight computer system featuring:
 └─────────────────────────────────────┘
 ```
 
-## ✨ Features
+## Features
 
 ### Flight Computer (Arduino/Teensy)
 - **Multi-sensor Integration**: BMP388 (altitude/pressure), BNO055 (IMU), GPS
@@ -113,7 +113,7 @@ This project implements a complete rocket flight computer system featuring:
 - **RS232**: High-speed serial communication
 - **HYI Protocol**: Competition-standard data format
 
-## 🔧 Hardware Requirements
+##  Hardware Requirements
 
 ### Flight Computer
 - **Microcontroller**: Teensy 4.x (recommended) or Arduino compatible
@@ -128,10 +128,10 @@ This project implements a complete rocket flight computer system featuring:
   - 2x Pyro channels (MOSFET controlled)
 - **Power**: 3.3V regulated supply
 
-## 💻 Software Requirements
+## Software Requirements
 
 ### Flight Computer (Recommended)
-- **Arduino IDE** 1.8.x or later ⭐ **RECOMMENDED**
+- **Arduino IDE** 1.8.x or later **RECOMMENDED**
 - **Teensyduino** (if using Teensy)
 - **Required Libraries**:
   - `Adafruit_Sensor`
@@ -146,16 +146,16 @@ This project implements a complete rocket flight computer system featuring:
 - **CMake**: 3.16+ (optional)
 - **Make**: Standard Unix/Linux make
 - **IDE Support**: VS Code, CLion, or similar
-- ⚠️ **Complex setup, not recommended for beginners**
+- **Complex setup, not recommended for beginners**
 
 ### PlatformIO Development (Not Recommended)
 - **PlatformIO Core**: Latest version
 - **PlatformIO IDE**: VS Code extension or standalone
 - **Python**: 3.7+ (for build scripts)
 - **Automatic Library Management**: Dependencies handled automatically
-- ⚠️ **Advanced setup, Arduino IDE preferred**
+- **Advanced setup, Arduino IDE preferred**
 
-## 📦 Installation
+## Installation
 
 ### 1. Clone the Repository
 ```bash
@@ -197,7 +197,7 @@ cd rocket-flight-computer
 3. **See `firmware/README_CPP.md` for detailed C++ development guide**
 
 ### PlatformIO Setup (Not Recommended)
-⚠️ **Advanced setup - Arduino IDE recommended for beginners**
+**Advanced setup - Arduino IDE recommended for beginners**
 
 1. **Install PlatformIO**:
    ```bash
@@ -217,9 +217,9 @@ cd rocket-flight-computer
 
 4. **See `README_PLATFORMIO.md` for detailed PlatformIO guide**
 
-## 🚀 Usage
+## Usage
 
-### ⭐ Recommended: Arduino IDE Setup
+### Recommended: Arduino IDE Setup
 1. **Install Arduino IDE** and Teensyduino
 2. **Install required libraries** via Library Manager
 3. **Open `firmware/RocketFlightAlgorithm.ino`**
@@ -237,7 +237,7 @@ cd rocket-flight-computer
 - **SIT Mode**: System Integration Test - sends fixed test data
 - **SUT Mode**: System Under Test - receives external data for testing
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 rocket-flight-computer/
@@ -267,7 +267,7 @@ rocket-flight-computer/
 └── examples/                # Example configurations
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 ### Flight Computer Configuration
 Edit the constants in `firmware/RocketFlightAlgorithm.ino`:
@@ -283,7 +283,7 @@ constexpr uint8_t SDA_PIN = 17, SCL_PIN = 16;
 constexpr uint8_t PYRO1_PIN = 23, PYRO2_PIN = 38;
 ```
 
-## 📚 API Documentation
+## API Documentation
 
 ### Flight Computer Functions
 - `readSensors()`: Read all sensor data
@@ -326,25 +326,12 @@ if (!sep2 && desc && fAlt <= 600.0f && fAlt >= 400.0f) {
 }
 ```
 
-## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Development Guidelines
-- Follow Arduino coding standards for firmware
-- Add comments for complex algorithms
-- Include error handling for robust operation
-- Test thoroughly before submitting
-
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## ⚠️ Safety Notice
+## Safety Notice
 
 - This system controls pyrotechnic devices
 - Always follow proper safety procedures
@@ -352,7 +339,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Ensure proper failsafes are in place
 - Comply with local regulations
 
-## 📞 Support
+## Support
 
 For questions and support:
 - Create an issue on GitHub
