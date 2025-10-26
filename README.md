@@ -170,13 +170,22 @@ Bytes 13-16: RMS Internal Sensor (float, 4 bytes)
 Bytes 17-20: RMS External Sensor (float, 4 bytes)
 ```
 
+**Detailed Byte Layout**:
+```
+Byte 0:   Header (0x52)
+Bytes 1-4:   GPS Latitude (float, Little Endian)
+Bytes 5-8:   GPS Longitude (float, Little Endian)
+Bytes 9-12:  GPS Altitude (float, Little Endian)
+Bytes 13-16: RMS Internal Sensor (float, Little Endian)
+Bytes 17-20: RMS External Sensor (float, Little Endian)
+```
+
 ### 3. RS232 Command Protocol
 **Ground Station → Main Flight Computer**
 - **Baud Rate**: 115200
 - **Packet Size**: 5 bytes
 
 **Command Packet Structure**:
-```
 Byte 0: Header (0xAA)
 Byte 1: Command
 Byte 2: Reserved
