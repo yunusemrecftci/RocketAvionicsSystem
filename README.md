@@ -449,6 +449,7 @@ RocketAvionicsSystem/
 - Comply with local regulations
 - Pyro pins must be in LOW position initially
 - Do not connect pyro devices during testing
+- It is not the final code of the rocket.
 
 ## License
 
@@ -460,9 +461,11 @@ For questions and support:
 - Create an issue on GitHub
 - Review project documentation
 - Follow safety procedures
+- **Contact**: yunusemrekonya6@gmail.com
+
 
 ---
 
 **Version**: 2.0.0  
-**Last Updated**: December 2024  
+**Last Updated**: December 2025  
 **Developer**: Yunus Emre Çiftçi
