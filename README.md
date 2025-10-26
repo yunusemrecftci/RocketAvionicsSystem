@@ -169,7 +169,7 @@ Byte 0:   Header (0x67)
     Bytes 37-40: Acceleration Z (float, 4 bytes)
     Bytes 41-44: Acceleration Y (float, 4 bytes)
     Byte 45:     State (8-bit flags)
-    ```
+```
 
 ### 2. Payload LoRa Telemetry
 **Payload → Receiver**
