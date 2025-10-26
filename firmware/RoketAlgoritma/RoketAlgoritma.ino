@@ -2,10 +2,7 @@
 // EK-6 Rev4 Uyumlu UKB Test Firmware (SIT + SUT + Durum Paketleri)
 // (Teensy 4.x + LoRa E22 + BMP388 + BNO055 + TinyGPS++ + RS232)
 // 
-// *** FİLTRE SİSTEMİ KALDIRILDI ***
-// - Ham sensör verileri direkt kullanılıyor
-// - Filtreleme yok - maksimum hız ve tepki süresi
-// =====================================================================
+
 
 #include <Wire.h> // I2C iletişimi için gerekli
 #include <Adafruit_Sensor.h> // Adafruit sensör kütüphanesi
@@ -42,7 +39,7 @@ struct FlightConfig {
   static constexpr float BURNOUT_ACCEL_RATIO = 0.8f;       // Maksimum ivmenin %70'i (%30 azalma algılama)
   static constexpr unsigned long BURNOUT_CONFIRM_TIME = 100; // Normal burnout doğrulama süresi (ms)
   
-  // SUT Özel Burnout Parametreleri (Daha Hızlı Algılama)
+  // SUT Özel Burnout Parametreleri Test Amaçlı Kaldırlacak
   static constexpr float SUT_BURNOUT_ACCEL_THRESHOLD = 3.0f; // SUT burnout ivme eşiği (m/s²) - düşürüldü
   static constexpr float SUT_BURNOUT_ACCEL_RATIO = 0.7f;     // SUT maksimum ivmenin %70'i - çok daha agresif
   static constexpr unsigned long SUT_BURNOUT_CONFIRM_TIME = 100; // SUT burnout doğrulama süresi (ms) - çok hızlı
