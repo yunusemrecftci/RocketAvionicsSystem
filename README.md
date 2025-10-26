@@ -48,10 +48,44 @@ This project implements a complete rocket avionics system consisting of the foll
 - **Test Modes**: SIT (System Integration Test) and SUT (System Under Test) modes
 - **Payload System**: Dual MPU6050 sensors with RMS calculation, GPS tracking
 
+## Kalman Filter Implementation
+
+The system implements Kalman filters for sensor data processing to improve accuracy and reduce noise:
+
+### **Barometric Altitude Filtering**
+```cpp
+// Barometric altitude Kalman filter
+SimpleKalmanFilter baroKalman(1, 1, 0.01);
+float kalmanAlt = baroKalman.updateEstimate(rawAlt);
+```
+
+**Parameters**:
+- **Measurement Error**: 1.0m (sensor noise)
+- **Estimation Error**: 1.0m (prediction uncertainty)
+- **Process Noise**: 0.01m (system dynamics)
+
+### **Angle Data Filtering**
+```cpp
+// Angle data Kalman filter
+SimpleKalmanFilter angleKalman(2, 2, 0.1);
+float kalmanPitch = angleKalman.updateEstimate(absPitch);
+```
+
+**Parameters**:
+- **Measurement Error**: 2.0° (sensor noise)
+- **Estimation Error**: 2.0° (prediction uncertainty)
+- **Process Noise**: 0.1° (system dynamics)
+
+### **Filter Benefits**
+- **Noise Reduction**: Eliminates sensor measurement noise
+- **Smooth Data**: Provides stable, filtered sensor readings
+- **Real-time Processing**: Low computational overhead
+- **Adaptive**: Automatically adjusts based on sensor confidence
+
 ## Flight Demonstration
 
 <div align="center">
-  <img src="images/flightvideo.gif" alt="Rocket Flight Test" width="600">
+  <img src="images/flightvideo.gif" alt="Rocket Flight Test" width="400">
 </div>
 
 *Rocket flight test demonstration showing the avionics system in action.*
