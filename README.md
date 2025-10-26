@@ -85,6 +85,11 @@ Pyro: CH1=23, CH2=38
 ```
 
 ### 2. Payload Rocket Code (gorevyukuroketkod.ino)
+
+<div align="center">
+  <img src="images/payload.jpeg" alt="Payload Module" width="400">
+</div>
+
 **Microcontroller**: Teensy 4.1
 - **GPS Module**: Position and altitude tracking
 - **MPU6050 Sensors**: Internal and external acceleration sensors (I2C addresses: 0x68, 0x69)
@@ -164,7 +169,7 @@ Byte 0:   Header (0x67)
     Bytes 37-40: Acceleration Z (float, 4 bytes)
     Bytes 41-44: Acceleration Y (float, 4 bytes)
     Byte 45:     State (8-bit flags)
-```
+    ```
 
 ### 2. Payload LoRa Telemetry
 **Payload → Receiver**
@@ -517,7 +522,7 @@ For questions and support:
 **Developer**: Yunus Emre Çiftçi
 
 
-## :)
+## Rockstar - Kaizen
 
 <div align="center">
   <img src="images/kaizen.jpeg" alt="Kaizen Rocket" width="400">
