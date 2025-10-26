@@ -1,51 +1,50 @@
-# Rocket Flight Computer
+# Rocket Avionics System
 
-A comprehensive Arduino/Teensy-based flight computer for rocket telemetry and autonomous control, featuring real-time sensor integration, flight algorithms, and communication protocols.
+A comprehensive avionics system developed for rocket flight, featuring real-time sensor integration, flight algorithms, and multiple communication protocols.
 
 ## Purpose & Mission
 
-This flight computer is designed for **autonomous rocket control and recovery**. Its primary mission is to:
+This avionics system is designed for **autonomous rocket control and recovery**. Its primary mission is to:
 
-- **Detect Launch**: Automatically identify when the rocket leaves the ground
-- **Monitor Flight**: Track altitude, orientation, and acceleration in real-time
-- **Detect Apogee**: Identify the highest point of the rocket's trajectory
-- **Deploy Parachutes**: Automatically trigger drogue and main parachutes at optimal altitudes
-- **Ensure Safe Recovery**: Guarantee the rocket returns safely to the ground
+- **Launch Detection**: Automatically detect when the rocket leaves the ground
+- **Flight Monitoring**: Track altitude, orientation, and acceleration in real-time
+- **Apogee Detection**: Identify the rocket's highest point
+- **Parachute Deployment**: Automatically trigger drogue and main parachutes at optimal altitudes
+- **Safe Recovery**: Ensure the rocket returns safely to the ground
 
-### Key Capabilities:
+### Key Features:
 - **Autonomous Operation**: No human intervention required during flight
 - **Real-time Processing**: 100Hz sensor reading and decision making
-- **Fail-safe Systems**: Multiple safety mechanisms to prevent accidents
+- **Safety Systems**: Multiple safety mechanisms to prevent accidents
 - **Competition Ready**: Compatible with rocket competition protocols
 - **Long-range Communication**: LoRa telemetry for ground monitoring
 
 ## Table of Contents
 
 - [Purpose & Mission](#purpose--mission)
-- [Overview](#overview)
-- [Hardware Overview](#hardware-overview)
-- [Features](#features)
-- [Hardware Requirements](#hardware-requirements)
-- [Software Requirements](#software-requirements)
+- [System Overview](#system-overview)
+- [Hardware Components](#hardware-components)
+- [Firmware Components](#firmware-components)
+- [Communication Protocols](#communication-protocols)
+- [Flight Algorithms](#flight-algorithms)
+- [Packet Structures](#packet-structures)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
-- [Configuration](#configuration)
-- [API Documentation](#api-documentation)
-- [Contributing](#contributing)
+- [Safety Notice](#safety-notice)
 - [License](#license)
 
-## Overview
+## System Overview
 
-This project implements a complete rocket flight computer system featuring:
+This project implements a complete rocket avionics system consisting of the following components:
 
-- **Multi-Sensor Integration**: BMP388 (altitude/pressure), BNO055 (IMU), GPS
+- **Multi-Sensor Integration**: BMP388 (altitude/pressure), BNO055 (IMU), GPS, MPU6050
 - **Real-time Flight Algorithms**: Launch detection, burnout detection, apogee detection
 - **Autonomous Control**: Automatic parachute deployment based on flight conditions
 - **Multiple Communication Modes**: LoRa telemetry, RS232 command interface
 - **Test Modes**: SIT (System Integration Test) and SUT (System Under Test) modes
 
-## Hardware Overview
+## Hardware Components
 
 ### Flight Computer Board
 
@@ -53,50 +52,92 @@ This project implements a complete rocket flight computer system featuring:
 
 *The flight computer features a Teensy 4.x microcontroller with integrated sensors and communication modules for autonomous rocket control.*
 
-### Key Components:
-- **Teensy 4.x Microcontroller**: High-performance ARM Cortex-M7 processor
+### 1. Main Flight Computer (RoketAlgoritma.ino)
+**Microcontroller**: Teensy 4.x
 - **BMP388 Sensor**: Barometric pressure and altitude measurement
-- **BNO055 IMU**: 9-DOF motion and orientation sensing
+- **BNO055 IMU**: 9-DOF motion and orientation sensor
 - **GPS Module**: Global positioning and navigation
-- **LoRa E22 Module**: Long-range wireless communication (15km tested range)
+- **LoRa E22 Module**: Long-range wireless communication
 - **RS232 Interface**: High-speed serial communication
 - **Pyro Control Circuits**: MOSFET-based parachute deployment
 
-### Pin Layout:
+**Pin Configuration**:
 ```
-┌─────────────────────────────────────┐
-│ Teensy 4.x Flight Computer         │
-├─────────────────────────────────────┤
-│ I2C: SDA=17, SCL=16                │
-│ LoRa: TX=0, RX=1                   │
-│ RS232: TX=9, RX=10                 │
-│ GPS: TX=14, RX=15                  │
-│ Pyro: CH1=23, CH2=38               │
-└─────────────────────────────────────┘
+I2C: SDA=17, SCL=16
+LoRa: TX=0, RX=1
+RS232: TX=9, RX=10
+GPS: TX=14, RX=15
+Pyro: CH1=23, CH2=38
 ```
 
-## Features
+### 2. Payload Rocket Code (gorevyukuroketkod.ino)
+**Microcontroller**: Teensy 4.1
+- **GPS Module**: Position and altitude tracking
+- **MPU6050 Sensors**: Internal and external acceleration sensors (I2C addresses: 0x68, 0x69)
+- **LoRa E22 Module**: Telemetry transmission
+- **SD Card**: Data logging
+- **Kalman Filters**: Sensor data filtering
 
-### Flight Computer (Arduino/Teensy)
-- **Multi-sensor Integration**: BMP388 (altitude/pressure), BNO055 (IMU), GPS
-- **Real-time Flight Algorithms**: Launch detection, burnout detection, apogee detection
-- **Autonomous Control**: Automatic parachute deployment based on flight conditions
-- **Multiple Communication Modes**: LoRa telemetry, RS232 command interface
-- **Test Modes**: SIT (System Integration Test) and SUT (System Under Test) modes
+### 3. Receiver Systems
+- **GorevYukuNanoAlici.ino**: Arduino Nano-based payload receiver
+- **RoketNanoAlici.ino**: Arduino Nano-based rocket receiver
+- **RoketUnoAlici.ino**: Arduino Uno-based rocket receiver
 
-### Communication Protocols
-- **LoRa E22**: Long-range wireless telemetry
-  - **Rocket Antenna**: 5dB Omni antenna
-  - **Ground Antenna**: 12dB 866MHz Yagi antenna
-  - **Tested Range**: 15km (verified in field tests)
+## Firmware Components
+
+### 1. Main Flight Computer (RoketAlgoritma.ino)
+**Features**:
+- Real-time sensor reading (100Hz)
+- Data improvement with Kalman filtering
+- Autonomous flight algorithms
+- SIT/SUT test modes
+- RS232 command interface
+
+**Main Functions**:
+- `readSensors()`: Reads all sensor data
+- `flightAlgo()`: Executes flight control algorithms
+- `sendLoRa()`: Transmits telemetry via LoRa
+- `sendSitTelemetry()`: Sends SIT test data
+- `receiveSutPacket()`: Processes SUT test data
+
+### 2. Payload Rocket Code (gorevyukuroketkod.ino)
+**Features**:
+- GPS position tracking
+- Dual MPU6050 sensor support
+- RMS (Root Mean Square) calculation
+- Kalman filtering
+- SD card data logging
+- LoRa telemetry
+
+**Main Functions**:
+- `readMPU6050Data()`: Reads MPU6050 data
+- `calculateRMS()`: Calculates RMS values
+- `sendLoRaData()`: Sends LoRa telemetry
+- `writeDataToSD()`: Writes data to SD card
+
+### 3. Receiver Systems
+**GorevYukuNanoAlici.ino**:
+- Data reception via LoRa E22
+- JSON format output to computer
+- 21 byte packet structure
+
+**RoketNanoAlici.ino & RoketUnoAlici.ino**:
+- 46 byte telemetry packet reception
+- JSON format output
+- Header control and data validation
+
+## Communication Protocols
+
+### 1. LoRa E22 Telemetry
+**Main Flight Computer → Receivers**
+- **Packet Size**: 46 bytes
   - **Frequency**: 866MHz (configurable)
-  - **Packet Structure**: 46-byte binary format
-    ```
-    Header (1 byte) + Body (44 bytes) + State (1 byte) = 46 bytes total
-    ```
-  - **Byte-by-Byte Structure**:
-    ```
-    Byte 0:   Header (0xFF)
+- **Range**: 15km (tested)
+- **Transmission Rate**: 300ms (3.33 Hz)
+
+**Packet Structure**:
+```
+Byte 0:   Header (0x67)
     Bytes 1-4:   Altitude (float, 4 bytes)
     Bytes 5-8:   GPS Altitude (float, 4 bytes)
     Bytes 9-12:  GPS Latitude (float, 4 bytes)
@@ -110,244 +151,305 @@ This project implements a complete rocket flight computer system featuring:
     Bytes 41-44: Acceleration Y (float, 4 bytes)
     Byte 45:     State (8-bit flags)
     ```
-- **RS232**: High-speed serial communication
-- **HYI Protocol**: Competition-standard data format
 
-##  Hardware Requirements
+### 2. Payload LoRa Telemetry
+**Payload → Receiver**
+- **Packet Size**: 21 bytes
+- **Header**: 0x52
+- **Transmission Rate**: 165ms (6 Hz)
 
-### Flight Computer
-- **Microcontroller**: Teensy 4.x (recommended) or Arduino compatible
-- **Sensors**:
-  - BMP388 (Barometric pressure/altitude)
-  - BNO055 (9-DOF IMU)
-  - GPS module (NEO-6M or compatible)
-- **Communication**:
-  - LoRa E22 module
-  - RS232 interface
-- **Actuators**:
-  - 2x Pyro channels (MOSFET controlled)
-- **Power**: 3.3V regulated supply
-
-## Software Requirements
-
-### Flight Computer (Recommended)
-- **Arduino IDE** 1.8.x or later **RECOMMENDED**
-- **Teensyduino** (if using Teensy)
-- **Required Libraries**:
-  - `Adafruit_Sensor`
-  - `Adafruit_BMP3XX`
-  - `Adafruit_BNO055`
-  - `TinyGPS++`
-  - `LoRa_E22`
-  - `RunningAverage`
-
-### C++ Development (Not Recommended)
-- **C++ Compiler**: GCC 7+ or Clang 6+
-- **CMake**: 3.16+ (optional)
-- **Make**: Standard Unix/Linux make
-- **IDE Support**: VS Code, CLion, or similar
-- **Complex setup, not recommended for beginners**
-
-### PlatformIO Development (Not Recommended)
-- **PlatformIO Core**: Latest version
-- **PlatformIO IDE**: VS Code extension or standalone
-- **Python**: 3.7+ (for build scripts)
-- **Automatic Library Management**: Dependencies handled automatically
-- **Advanced setup, Arduino IDE preferred**
-
-## Installation
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/yourusername/rocket-flight-computer.git
-cd rocket-flight-computer
+**Packet Structure**:
+```
+Byte 0:   Header (0x52)
+Bytes 1-4:   GPS Latitude (float, 4 bytes)
+Bytes 5-8:   GPS Longitude (float, 4 bytes)
+Bytes 9-12:  GPS Altitude (float, 4 bytes)
+Bytes 13-16: RMS Internal Sensor (float, 4 bytes)
+Bytes 17-20: RMS External Sensor (float, 4 bytes)
 ```
 
-### 2. Flight Computer Setup
-1. Install Arduino IDE and Teensyduino
-2. Install required libraries via Library Manager:
-   ```
-   Adafruit Unified Sensor
-   Adafruit BMP3XX
-   Adafruit BNO055
-   TinyGPS++
-   LoRa_E22
-   RunningAverage
-   ```
-3. Connect hardware according to pin definitions in `docs/hardware.md`
-4. Upload `firmware/RocketFlightAlgorithm.ino` to your microcontroller
+### 3. RS232 Command Protocol
+**Ground Station → Main Flight Computer**
+- **Baud Rate**: 115200
+- **Packet Size**: 5 bytes
 
-### C++ Development Setup (Not Recommended)
-⚠️ **Advanced setup - Arduino IDE recommended for beginners**
-
-1. **Build with Make**:
-   ```bash
-   cd firmware
-   make
-   ```
-
-2. **Build with CMake**:
-   ```bash
-   cd firmware
-   mkdir build && cd build
-   cmake ..
-   make
-   ```
-
-3. **See `firmware/README_CPP.md` for detailed C++ development guide**
-
-### PlatformIO Setup (Not Recommended)
-**Advanced setup - Arduino IDE recommended for beginners**
-
-1. **Install PlatformIO**:
-   ```bash
-   pip install platformio
-   ```
-
-2. **Build and Upload**:
-   ```bash
-   pio run -e teensy41
-   pio run -e teensy41 -t upload
-   ```
-
-3. **Monitor Output**:
-   ```bash
-   pio device monitor -e teensy41
-   ```
-
-4. **See `README_PLATFORMIO.md` for detailed PlatformIO guide**
-
-## Usage
-
-### Recommended: Arduino IDE Setup
-1. **Install Arduino IDE** and Teensyduino
-2. **Install required libraries** via Library Manager
-3. **Open `firmware/RocketFlightAlgorithm.ino`**
-4. **Select Teensy 4.x board** and upload
-5. **Monitor via Serial Monitor** at 115200 baud
-
-### Flight Computer Operation
-1. **Power Up**: Connect power and wait for sensor calibration
-2. **Pre-flight Check**: Verify all sensors are reading correctly
-3. **Launch**: System automatically detects launch and begins flight algorithms
-4. **Recovery**: Automatic parachute deployment based on flight conditions
-
-### Communication Modes
-- **Normal Mode**: Standard flight operation
-- **SIT Mode**: System Integration Test - sends fixed test data
-- **SUT Mode**: System Under Test - receives external data for testing
-
-## Project Structure
-
+**Command Packet Structure**:
 ```
-rocket-flight-computer/
-├── README.md                 # This file
-├── LICENSE                   # License information
-├── .gitignore               # Git ignore rules
-├── images/                   # Project images
-│   └── board.jpeg            # Flight computer board image
-├── docs/                    # Documentation
-│   ├── hardware.md          # Hardware setup guide
-│   ├── software.md          # Software architecture
-│   └── protocols.md         # Communication protocols
-├── platformio.ini           # PlatformIO configuration
-├── src/
-│   └── main.cpp             # Main firmware source (PlatformIO)
-├── scripts/                 # Build scripts
-│   ├── pre_build.py         # Pre-build validation
-│   └── post_build.py        # Post-build reporting
-├── firmware/                # Flight computer code
-│   ├── RocketFlightAlgorithm.ino  # Main Arduino sketch (.ino)
-│   ├── rocket_flight_computer.cpp # C++ version of firmware
-│   ├── Makefile             # Make build system
-│   ├── CMakeLists.txt       # CMake build system
-│   └── README_CPP.md        # C++ implementation guide
-├── README_PLATFORMIO.md     # PlatformIO guide
-├── schematics/              # Hardware schematics
-└── examples/                # Example configurations
+Byte 0: Header (0xAA)
+Byte 1: Command
+Byte 2: Reserved
+Byte 3: Footer1 (0x0D)
+Byte 4: Footer2 (0x0A)
 ```
 
-## Configuration
+**Commands**:
+- `0x20`: Start SIT mode
+- `0x22`: Start SUT mode
+- `0x24`: Stop mode (return to Normal mode)
 
-### Flight Computer Configuration
-Edit the constants in `firmware/RocketFlightAlgorithm.ino`:
+### 4. SIT/SUT Test Protocols
 
+**SIT (System Integration Test)**:
+- Sends raw sensor data via RS232
+- 36 byte packet structure
+- Big Endian format
+- Checksum verification
+
+**SUT (System Under Test)**:
+- Receives data from external source
+- Tests flight algorithms
+- Sends 10 Hz status packets
+- 6 byte status packet structure
+
+## Flight Algorithms
+
+### 1. Launch Detection
 ```cpp
-// Flight parameters
-const float ANGLE_THR = 40.0;           // Pitch angle threshold (degrees)
-const float DESC_DROP_M = 10.0;         // Descent detection altitude drop (meters)
-constexpr float SEA_LEVEL_HPA = 1013.25; // Sea level pressure (adjust for location)
-
-// Pin definitions
-constexpr uint8_t SDA_PIN = 17, SCL_PIN = 16;
-constexpr uint8_t PYRO1_PIN = 23, PYRO2_PIN = 38;
-```
-
-## API Documentation
-
-### Flight Computer Functions
-- `readSensors()`: Read all sensor data
-- `flightAlgo()`: Execute flight control algorithms
-- `sendLoRa()`: Transmit telemetry via LoRa
-- `sendSitTelemetry()`: Send SIT test data
-- `receiveSutPacket()`: Process SUT test data
-
-### Flight Algorithms
-
-#### Launch Detection
-```cpp
-// Detect when rocket leaves ground
-if (!launch && fAlt > 5.0f && fAlt < 10000) {
+// Minimum altitude gain from ground level
+if (!launch && altGain > 5.0f && altGain < 100.0f) {
     launch = true;
 }
 ```
 
-#### Burnout Detection
+**Parameters**:
+- Minimum altitude gain: 5.0m
+- Maximum altitude gain: 100.0m
+- Valid altitude maximum: 10000.0m
+
+### 2. Burnout Detection
 ```cpp
-// Monitor acceleration for motor burnout
+// Motor burnout detection via acceleration decrease
 float totalAccel = sqrt(accX² + accY² + accZ²);
-if (totalAccel < maxAccelTotal * 0.5f && totalAccel < threshold) {
+if (totalAccel < maxAccelTotal * 0.7f && totalAccel < 3.0f) {
     burnout = true;
 }
 ```
 
-#### Parachute Deployment
+**Parameters**:
+- Normal mode: 80% decrease, 2.0 m/s² threshold
+- SUT mode: 70% decrease, 3.0 m/s² threshold
+- Confirmation time: 100-200ms
+
+### 3. Angle Threshold Detection
 ```cpp
-// Drogue parachute (apogee detection)
-if (!sep1 && desc && fAlt > 100.0f) {
+// Pitch angle threshold control
+if (absAngle > 20.0f && (millis() - angleT) >= 50) {
+    angleFlag = true;
+}
+```
+
+**Parameters**:
+- Angle threshold: 20.0°
+- Hold time: 50ms
+- Check interval: 50ms
+
+### 4. Descent Detection
+```cpp
+// Altitude drop from maximum altitude
+if ((maxAlt - fAlt) >= 10.0f) {
+    desc = true;
+}
+```
+
+**Parameters**:
+- Drop threshold: 10.0m
+- Minimum altitude: 20.0m
+
+### 5. Parachute Control
+
+**Drogue Parachute**:
+```cpp
+// Descent + angle threshold + altitude control
+if (!sep1 && desc && angleFlag && fAlt > 100.0f) {
     digitalWrite(PYRO1_PIN, HIGH);
     sep1 = true;
 }
+```
 
-// Main parachute (altitude-based)
+**Main Parachute**:
+```cpp
+// Altitude range control
 if (!sep2 && desc && fAlt <= 600.0f && fAlt >= 400.0f) {
     digitalWrite(PYRO2_PIN, HIGH);
     sep2 = true;
 }
 ```
 
+**Parameters**:
+- Drogue minimum altitude: 100.0m
+- Main parachute range: 400-600m
+- Pyro pulse duration: 500-2000ms
+
+## Packet Structures
+
+### 1. Main Telemetry Packet (46 bytes)
+```cpp
+struct TelePkt {
+    uint8_t hdr;      // 0x67
+    uint8_t body[44]; // 11 float * 4 bytes
+    uint8_t state;    // Status flags
+};
+```
+
+### 2. Payload Packet (21 bytes)
+```cpp
+struct DataPacket {
+    uint8_t header;   // 0x52
+    uint8_t body[20]; // 5 float * 4 bytes
+};
+```
+
+### 3. SIT Test Packet (36 bytes)
+```cpp
+// Big Endian format
+Byte 0: Header (0xAB)
+Bytes 1-4: Altitude
+Bytes 5-8: Pressure
+Bytes 9-12: Acceleration X
+Bytes 13-16: Acceleration Y
+Bytes 17-20: Acceleration Z
+Bytes 21-24: Angle X
+Bytes 25-28: Angle Y
+Bytes 29-32: Angle Z
+Byte 33: Checksum
+Byte 34: Footer1 (0x0D)
+Byte 35: Footer2 (0x0A)
+```
+
+### 4. SUT Status Packet (6 bytes)
+```cpp
+Byte 0: Header (0xAA)
+Byte 1: Data1 (low byte)
+Byte 2: Data2 (high byte)
+Byte 3: Checksum
+Byte 4: Footer1 (0x0D)
+Byte 5: Footer2 (0x0A)
+```
+
+### 5. Status Bits (8-bit)
+```
+Bit 0: Rocket launch detected
+Bit 1: Motor burnout prevention period
+Bit 2: Minimum altitude threshold exceeded
+Bit 3: Rocket body angle excessive
+Bit 4: Rocket altitude started descending
+Bit 5: Drogue parachute command
+Bit 6: Altitude below determined level
+Bit 7: Main parachute command
+```
+
+## Installation
+
+### 1. Requirements
+- **Arduino IDE** 1.8.x or later
+- **Teensyduino** (for Teensy usage)
+- **Required Libraries**:
+  - Adafruit_Sensor
+  - Adafruit_BMP3XX
+  - Adafruit_BNO055
+  - TinyGPS++
+  - LoRa_E22
+  - SimpleKalmanFilter
+
+### 2. Hardware Connections
+```
+Teensy 4.x Main Flight Computer:
+├── I2C: SDA=17, SCL=16 (BMP388, BNO055)
+├── LoRa: TX=0, RX=1 (E22)
+├── RS232: TX=9, RX=10 (Ground Station)
+├── GPS: TX=14, RX=15 (GPS Module)
+└── Pyro: CH1=23, CH2=38 (Parachute Triggering)
+
+Teensy 4.1 Payload:
+├── GPS: RX=7, TX=8
+├── LoRa: RX=21, TX=20
+├── I2C: Wire2 (MPU6050 x2)
+└── SD: BUILTIN_SDCARD
+
+Arduino Nano/Uno Receivers:
+├── LoRa: RX=8, TX=9 (Nano)
+├── LoRa: RX=8, TX=9 (Uno)
+└── USB: Serial monitor output
+```
+
+### 3. Firmware Upload
+1. Open Arduino IDE
+2. Install required libraries
+3. Open the relevant .ino file
+4. Select the correct board (Teensy 4.x, Arduino Nano/Uno)
+5. Upload
+
+## Usage
+
+### 1. Main Flight Computer
+1. **Power On**: Wait for sensor calibration
+2. **Pre-flight Check**: Verify all sensors are reading correctly
+3. **Launch**: System automatically detects launch and begins flight algorithms
+4. **Recovery**: Automatic parachute deployment based on flight conditions
+
+### 2. Test Modes
+- **Normal Mode**: Standard flight operation
+- **SIT Mode**: System Integration Test - sends fixed test data
+- **SUT Mode**: System Under Test - receives external data and tests
+
+### 3. Command Sending (RS232)
+```cpp
+// Start SIT mode
+0xAA 0x20 0x00 0x0D 0x0A
+
+// Start SUT mode
+0xAA 0x22 0x00 0x0D 0x0A
+
+// Stop mode
+0xAA 0x24 0x00 0x0D 0x0A
+```
+
+## Project Structure
+
+```
+RocketAvionicsSystem/
+├── README.md                           # This file
+├── LICENSE                             # License information
+├── images/                             # Project images
+│   └── board.jpeg                      # Flight computer board
+├── firmware/                           # Firmware codes
+│   ├── RoketAlgoritma/                 # Main flight computer
+│   │   └── RoketAlgoritma.ino
+│   ├── gorevyukuroketkod/              # Payload rocket code
+│   │   └── gorevyukuroketkod.ino
+│   ├── GorevYukuNanoAlici/             # Payload receiver
+│   │   └── GorevYukuNanoAlici.ino
+│   ├── RoketNanoAlici/                 # Rocket receiver (Nano)
+│   │   └── RoketNanoAlici.ino
+│   └── RoketUnoAlici/                  # Rocket receiver (Uno)
+│       └── RoketUnoAlici.ino
+```
+
+## Safety Notice
+
+⚠️ **IMPORTANT SAFETY WARNING**
+
+- This system controls pyrotechnic devices
+- Always follow proper safety procedures
+- Test thoroughly in safe conditions
+- Ensure proper safety measures are in place
+- Comply with local regulations
+- Pyro pins must be in LOW position initially
+- Do not connect pyro devices during testing
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Safety Notice
-
-- This system controls pyrotechnic devices
-- Always follow proper safety procedures
-- Test thoroughly in safe conditions
-- Ensure proper failsafes are in place
-- Comply with local regulations
-
 ## Support
 
 For questions and support:
 - Create an issue on GitHub
-- Check the documentation in the `docs/` folder
-- Review example configurations in `examples/`
+- Review project documentation
+- Follow safety procedures
 
 ---
 
-**Version**: 1.0.0  
-**Last Updated**: August 2025  
-**Maintainer**: Yunus Emre Çiftçi
+**Version**: 2.0.0  
+**Last Updated**: December 2024  
+**Developer**: Yunus Emre Çiftçi
