@@ -1,5 +1,8 @@
 # Rocket Avionics System
 
+# BU KOD SON KOD DEĞİLDİR ÖRNEK YAPIYI GÖSTERMEKTEDİR
+
+
 A comprehensive avionics system developed for rocket flight, featuring real-time sensor integration, flight algorithms, and multiple communication protocols.
 
 ## Purpose & Mission
@@ -44,6 +47,14 @@ This project implements a complete rocket avionics system consisting of the foll
 - **Multiple Communication Modes**: LoRa telemetry, RS232 command interface
 - **Test Modes**: SIT (System Integration Test) and SUT (System Under Test) modes
 - **Payload System**: Dual MPU6050 sensors with RMS calculation, GPS tracking
+
+## Flight Demonstration
+
+<div align="center">
+  <img src="images/flightvideo.gif" alt="Rocket Flight Test" width="600">
+</div>
+
+*Rocket flight test demonstration showing the avionics system in action.*
 
 ## Hardware Components
 
