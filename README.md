@@ -515,3 +515,10 @@ For questions and support:
 **Version**: 2.0.0  
 **Last Updated**: December 2025  
 **Developer**: Yunus Emre Çiftçi
+
+
+## :)
+
+<div align="center">
+  <img src="images/kaizen.jpeg" alt="Kaizen Rocket" width="400">
+</div>
