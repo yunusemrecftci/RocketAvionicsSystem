@@ -48,9 +48,11 @@ This project implements a complete rocket avionics system consisting of the foll
 
 ### Flight Computer Board
 
-![Rocket Flight Computer Board](images/board.jpeg)
+<div align="center">
+  <img src="images/board.jpeg" alt="Rocket Flight Computer Board" width="600">
+</div>
 
-*The flight computer features a Teensy 4.x microcontroller with integrated sensors and communication modules for autonomous rocket control.*
+*The flight computer features a Teensy 4.x microcontroller with integrated sensors and communication modules for autonomous rocket control. The board includes GPS6MUZ GPS module, BNO055 IMU sensor, CJMCL-388 barometric pressure sensor, LoRa E22 telemetry module, and various control circuits.*
 
 ### 1. Main Flight Computer (RoketAlgoritma.ino)
 **Microcontroller**: Teensy 4.x
