@@ -43,6 +43,7 @@ This project implements a complete rocket avionics system consisting of the foll
 - **Autonomous Control**: Automatic parachute deployment based on flight conditions
 - **Multiple Communication Modes**: LoRa telemetry, RS232 command interface
 - **Test Modes**: SIT (System Integration Test) and SUT (System Under Test) modes
+- **Payload System**: Dual MPU6050 sensors with RMS calculation, GPS tracking
 
 ## Hardware Components
 
@@ -52,7 +53,7 @@ This project implements a complete rocket avionics system consisting of the foll
   <img src="images/board.jpeg" alt="Rocket Flight Computer Board" width="600">
 </div>
 
-*The flight computer features a Teensy 4.x microcontroller with integrated sensors and communication modules for autonomous rocket control. The board includes GPS6MUZ GPS module, BNO055 IMU sensor, CJMCL-388 barometric pressure sensor, LoRa E22 telemetry module, and various control circuits.*
+*The flight computer features a Teensy 4.x microcontroller with integrated sensors and communication modules for autonomous rocket control. The board includes GPS6MUZ GPS module, BNO055 IMU sensor, BMP388 barometric pressure sensor, LoRa E22 telemetry module, and various control circuits for pyro channel management.*
 
 ### 1. Main Flight Computer (RoketAlgoritma.ino)
 **Microcontroller**: Teensy 4.x
