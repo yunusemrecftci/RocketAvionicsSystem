@@ -152,7 +152,7 @@ Byte 0:   Header (0x67)
     Bytes 37-40: Acceleration Z (float, 4 bytes)
     Bytes 41-44: Acceleration Y (float, 4 bytes)
     Byte 45:     State (8-bit flags)
-    ```
+```
 
 ### 2. Payload LoRa Telemetry
 **Payload → Receiver**
@@ -186,6 +186,7 @@ Bytes 17-20: RMS External Sensor (float, Little Endian)
 - **Packet Size**: 5 bytes
 
 **Command Packet Structure**:
+```
 Byte 0: Header (0xAA)
 Byte 1: Command
 Byte 2: Reserved
@@ -194,10 +195,11 @@ Byte 4: Footer2 (0x0A)
 ```
 
 **Commands**:
+```
 - `0x20`: Start SIT mode
 - `0x22`: Start SUT mode
 - `0x24`: Stop mode (return to Normal mode)
-
+```
 ### 4. SIT/SUT Test Protocols
 
 **SIT (System Integration Test)**:
