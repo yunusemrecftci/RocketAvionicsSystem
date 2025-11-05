@@ -1,6 +1,6 @@
 # Rocket Avionics System
 
-# BU KOD SON KOD DEĞİLDİR ÖRNEK YAPIYI GÖSTERMEKTEDİR
+
 
 
 A comprehensive avionics system developed for rocket flight, featuring real-time sensor integration, flight algorithms, and multiple communication protocols.
