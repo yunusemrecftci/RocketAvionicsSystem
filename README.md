@@ -519,7 +519,7 @@ For questions and support:
 
 **Version**: 2.0.0  
 **Last Updated**: December 2025  
-**Developer**: Yunus Emre Çiftçi
+**Developer**: Yunus Emre Çiftçi - Yüksel Yurtbahar
 
 
 ## Rockstar - Kaizen
